@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/"/>
     <id>http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/</id>
     <published>2015-02-02T16:00:00-08:00</published>
-    <updated>2015-02-06T23:07:08-08:00</updated>
+    <updated>2015-02-06T23:10:24-08:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -379,7 +379,7 @@ so that the verified double works as expected.&lt;/p&gt;
 &lt;p&gt;Ruby 2.2 was released in December, and while most Ruby 2.1 code bases
 work just fine on 2.2, there were a few changes the Rails core team
 had to make to Rails to support 2.2. Likewise, Aaron Kromer has updated
-rspec-rails to support &lt;a href="https://github.com/rspec/rspec-rails/pull/1277"&gt;Rails
+rspec-rails to support Ruby 2.2 on &lt;a href="https://github.com/rspec/rspec-rails/pull/1277"&gt;Rails
 3.2&lt;/a&gt; and &lt;a href="https://github.com/rspec/rspec-rails/pull/1264"&gt;Rails
 4.x&lt;/a&gt;.&lt;/p&gt;
 
