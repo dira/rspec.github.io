@@ -63,7 +63,7 @@ would only apply to example groups, not individual examples:</p>
 <span class="k">end</span>
 
 <span class="c1"># 3. Shared context auto-inclusion: groups tagged with</span>
-<span class="c1">#    `:redis` will have this context included.</span>
+<span class="c1">#    `:uses_redis` will have this context included.</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"Uses Redis"</span><span class="p">,</span> <span class="ss">:uses_redis</span> <span class="k">do</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:redis</span><span class="p">)</span> <span class="p">{</span> <span class="no">Redis</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'REDIS_URL'</span><span class="p">])</span> <span class="p">}</span>
   <span class="n">before</span> <span class="p">{</span> <span class="n">redis</span><span class="p">.</span><span class="nf">flushdb</span> <span class="p">}</span>

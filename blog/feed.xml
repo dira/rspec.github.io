@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/"/>
     <id>http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/</id>
     <published>2015-02-02T16:00:00-08:00</published>
-    <updated>2015-02-03T07:56:34-08:00</updated>
+    <updated>2015-02-06T23:07:08-08:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -79,7 +79,7 @@ would only apply to example groups, not individual examples:&lt;/p&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
 
 &lt;span class="c1"&gt;# 3. Shared context auto-inclusion: groups tagged with&lt;/span&gt;
-&lt;span class="c1"&gt;#    `:redis` will have this context included.&lt;/span&gt;
+&lt;span class="c1"&gt;#    `:uses_redis` will have this context included.&lt;/span&gt;
 &lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;shared_context&lt;/span&gt; &lt;span class="s2"&gt;"Uses Redis"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:uses_redis&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:redis&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="no"&gt;Redis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'REDIS_URL'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
   &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;flushdb&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
