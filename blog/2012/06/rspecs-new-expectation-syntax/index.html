@@ -5,13 +5,13 @@
 <!--[if gt IE 8]<!--><html class="no-js" lang="en"><!--<![endif]--><head><meta charset="UTF-8" /><title>RSpec's New Expectation Syntax</title><link href="/stylesheets/application.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/pages/blog.css" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" /><link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" /></head><body class="blog"><header><nav><h1><a href="/">RSpec</a></h1><ul><li><a href="/about">About</a></li><li><a href="/documentation">Documentation</a></li><li><a href="/blog">Blog</a></li><li><a href="/upgrading-from-rspec-2">Upgrade</a></li><li><a href="/help">Get Help</a></li><li><a href="/contributing">Contributing</a></li></ul></nav></header><section><article class="blog_post"><h1>RSpec's New Expectation Syntax</h1><h3 class="author">Myron Marston</h3><small class="date">Jun 15, 2012</small><p>RSpec has featured a readable english-like syntax for setting
 expectations for a long time:</p>
 
-<pre><code class="highlight ruby"><span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
 <span class="n">foo</span><span class="p">.</span><span class="nf">should_not</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
 </code></pre>
 
 <p>RSpec 2.11 will include a new variant to this syntax:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="n">foo</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">foo</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">foo</span><span class="p">).</span><span class="nf">not_to</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
 </code></pre>
 
@@ -28,7 +28,7 @@ delegate/proxy objects.</p>
 
 <p>Consider a simple proxy object that subclasses <code>BasicObject</code>:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># fuzzy_proxy.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># fuzzy_proxy.rb</span>
 <span class="k">class</span> <span class="nc">FuzzyProxy</span> <span class="o">&lt;</span> <span class="no">BasicObject</span>
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
     <span class="vi">@target</span> <span class="o">=</span> <span class="n">target</span>
@@ -49,7 +49,7 @@ other method calls to the target object.</p>
 
 <p>Here's a simple spec to test its fuzziness:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># fuzzy_proxy_spec.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># fuzzy_proxy_spec.rb</span>
 <span class="n">describe</span> <span class="no">FuzzyProxy</span> <span class="k">do</span>
   <span class="n">it</span> <span class="s1">'is fuzzy'</span> <span class="k">do</span>
     <span class="n">instance</span> <span class="o">=</span> <span class="no">FuzzyProxy</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:some_object</span><span class="p">)</span>
@@ -60,7 +60,7 @@ other method calls to the target object.</p>
 
 <p>Surprisingly, this fails:</p>
 
-<pre><code class="highlight plaintext">  1) FuzzyProxy is a fuzzy proxy
+<pre class="highlight plaintext"><code>  1) FuzzyProxy is a fuzzy proxy
      Failure/Error: instance.should be_fuzzy
      NoMethodError:
        undefined method `fuzzy?' for :some_object:Symbol
@@ -95,7 +95,7 @@ syntax as well.</p>
 
 <p>The solution we came up with is the new <code>expect</code> syntax:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># fuzzy_proxy_spec.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># fuzzy_proxy_spec.rb</span>
 <span class="n">describe</span> <span class="no">FuzzyProxy</span> <span class="k">do</span>
   <span class="n">it</span> <span class="s1">'is fuzzy'</span> <span class="k">do</span>
     <span class="n">instance</span> <span class="o">=</span> <span class="no">FuzzyProxy</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:some_object</span><span class="p">)</span>
@@ -118,7 +118,7 @@ it fails the example if it does not match.</p>
 the <code>expect</code> syntax does not directly support the operator
 matchers.</p>
 
-<pre><code class="highlight ruby"><span class="c1"># rather than:</span>
+<pre class="highlight ruby"><code><span class="c1"># rather than:</span>
 <span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="o">==</span> <span class="n">bar</span>
 
 <span class="c1"># ...use:</span>
@@ -138,7 +138,7 @@ we decided not to support operator matchers with
 the new syntax. Here's a listing of each of the old
 operator matchers (used with <code>should</code>), and their <code>expect</code> equivalent:</p>
 
-<pre><code class="highlight ruby"><span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="o">==</span> <span class="n">bar</span>
+<pre class="highlight ruby"><code><span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="o">==</span> <span class="n">bar</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">foo</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
 
 <span class="s2">"a string"</span><span class="p">.</span><span class="nf">should_not</span> <span class="o">=~</span> <span class="sr">/a regex/</span>
@@ -154,7 +154,7 @@ never been recommended. Who says "x should less than 10"?
 They were always intended to be used with <code>be</code>, which
 both reads better and continues to work:</p>
 
-<pre><code class="highlight ruby"><span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">be</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<pre class="highlight ruby"><code><span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">be</span> <span class="o">&lt;</span> <span class="mi">10</span>
 <span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">be</span> <span class="o">&lt;=</span> <span class="mi">10</span>
 <span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">be</span> <span class="o">&gt;</span> <span class="mi">10</span>
 <span class="n">foo</span><span class="p">.</span><span class="nf">should</span> <span class="n">be</span> <span class="o">&gt;=</span> <span class="mi">10</span>
@@ -170,7 +170,7 @@ both reads better and continues to work:</p>
 time<sup id="fnref:foot_3"><a href="#fn:foot_3" class="footnote">3</a></sup> in a limited form, as a more-readable alternative
 for block expectations:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># rather than:</span>
+<pre class="highlight ruby"><code><span class="c1"># rather than:</span>
 <span class="nb">lambda</span> <span class="p">{</span> <span class="n">do_something</span> <span class="p">}.</span><span class="nf">should</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">SomeError</span><span class="p">)</span>
 
 <span class="c1"># ...you can do:</span>
@@ -188,7 +188,7 @@ kinds of expectations.</p>
 available. However, if you want to use only one syntax
 or the other, you can configure RSpec:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">expect_with</span> <span class="ss">:rspec</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
     <span class="c1"># Disable the `expect` sytax...</span>

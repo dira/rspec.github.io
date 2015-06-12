@@ -18,7 +18,7 @@ to have it print more than 10 examples.</p>
 
 <p>To print off the 15 slowest examples, you could use:</p>
 
-<pre><code class="highlight plaintext">rspec --profile 15
+<pre class="highlight plaintext"><code>rspec --profile 15
 </code></pre>
 
 <h3 id="let-and-subject-declarations-can-use-super"><code>let</code> and <code>subject</code> declarations can use <code>super</code></h3>
@@ -27,7 +27,7 @@ to have it print more than 10 examples.</p>
 declaration in a nested group while delegating to the original definition from the
 parent group. Just use <code>super()</code>:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">Array</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">Array</span> <span class="k">do</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:numbers</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="p">}</span>
 
   <span class="n">context</span> <span class="s2">"when evens are filtered out"</span> <span class="k">do</span>
@@ -45,7 +45,7 @@ define_method() is not supported</code> error.</p>
 
 <p>This is best illustrated by an example:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># The existing `be_within` matcher (which still works):</span>
+<pre class="highlight ruby"><code><span class="c1"># The existing `be_within` matcher (which still works):</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">account</span><span class="p">.</span><span class="nf">balance</span><span class="p">).</span><span class="nf">to</span> <span class="n">be_within</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">of</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 
 <span class="c1"># Now you can do this, too:</span>
@@ -57,7 +57,7 @@ define_method() is not supported</code> error.</p>
 <p>This is handy when you want to verify something about the
 items in a list rather that simply verifying the items' identity.</p>
 
-<pre><code class="highlight ruby"><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">define</span> <span class="ss">:a_user_named</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">define</span> <span class="ss">:a_user_named</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
   <span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
     <span class="n">user</span><span class="p">.</span><span class="nf">name</span> <span class="o">==</span> <span class="nb">name</span>
   <span class="k">end</span>

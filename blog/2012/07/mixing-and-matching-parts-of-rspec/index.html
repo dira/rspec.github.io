@@ -36,7 +36,7 @@ failure output provided by rspec-expectations, you can use the
 assertions from the standard library provided by
 <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/minitest/unit/rdoc/MiniTest/Assertions.html">MiniTest</a>:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># rspec_and_minitest_assertions.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># rspec_and_minitest_assertions.rb</span>
 <span class="nb">require</span> <span class="s1">'set'</span>
 
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">rspec</span><span class="o">|</span>
@@ -60,7 +60,7 @@ assertions from the standard library provided by
 
 <p>The output:</p>
 
-<pre><code class="highlight plaintext">$ rspec rspec_and_minitest_assertions.rb 
+<pre class="highlight plaintext"><code>$ rspec rspec_and_minitest_assertions.rb 
 .F
 
 Failures:
@@ -83,7 +83,7 @@ rspec ./rspec_and_minitest_assertions.rb:14 # Set a failing example
 alternative that uses a single method (<code>assert</code> with a block) to
 provide detailed failure output:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># rspec_and_wrong.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># rspec_and_wrong.rb</span>
 <span class="nb">require</span> <span class="s1">'set'</span>
 <span class="nb">require</span> <span class="s1">'wrong'</span>
 
@@ -108,7 +108,7 @@ provide detailed failure output:</p>
 
 <p>The output:</p>
 
-<pre><code class="highlight plaintext">$ rspec rspec_and_wrong.rb
+<pre class="highlight plaintext"><code>$ rspec rspec_and_wrong.rb
 .F
 
 Failures:
@@ -139,7 +139,7 @@ be mixed in to the example context.</p>
 the syntax and failure output of rspec-expectations, you
 can combine them:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># minitest_and_rspec_expectations.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># minitest_and_rspec_expectations.rb</span>
 <span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
 <span class="nb">require</span> <span class="s1">'rspec/expectations'</span>
 <span class="nb">require</span> <span class="s1">'set'</span>
@@ -147,7 +147,7 @@ can combine them:</p>
 <span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">configuration</span><span class="p">.</span><span class="nf">syntax</span> <span class="o">=</span> <span class="ss">:expect</span>
 
 <span class="k">module</span> <span class="nn">MiniTest</span>
-  <span class="n">remove_const</span> <span class="p">:</span><span class="no">Assertion</span> <span class="c1"># so we can re-assign it w/o a ruby warning</span>
+  <span class="n">remove_const</span> <span class="ss">:Assertion</span> <span class="c1"># so we can re-assign it w/o a ruby warning</span>
 
   <span class="c1"># So expectation failures are considered failures, not errors.</span>
   <span class="no">Assertion</span> <span class="o">=</span> <span class="no">RSpec</span><span class="o">::</span><span class="no">Expectations</span><span class="o">::</span><span class="no">ExpectationNotMetError</span>
@@ -180,7 +180,7 @@ can combine them:</p>
 
 <p>The output:</p>
 
-<pre><code class="highlight plaintext">$ ruby minitest_and_rspec_expectations.rb
+<pre class="highlight plaintext"><code>$ ruby minitest_and_rspec_expectations.rb
 Run options: --seed 12759
 
 # Running tests:
@@ -229,7 +229,7 @@ README</a>,
 beautiful and tiny. However, rspec-mocks has many more features, and
 if you like those features, you can easily use it with MiniTest:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># minitest_and_rspec_mocks.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># minitest_and_rspec_mocks.rb</span>
 <span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
 <span class="nb">require</span> <span class="s1">'rspec/mocks'</span>
 
@@ -266,7 +266,7 @@ if you like those features, you can easily use it with MiniTest:</p>
 
 <p>The output:</p>
 
-<pre><code class="highlight plaintext">$ ruby minitest_and_rspec_mocks.rb 
+<pre class="highlight plaintext"><code>$ ruby minitest_and_rspec_mocks.rb 
 Run options: --seed 27480
 
 # Running tests:
@@ -322,7 +322,7 @@ In fact, many RSpec users prefer
 <a href="http://gofreerange.com/mocha/docs/">Mocha</a> to rspec-mocks,
 and the two can integrate just fine:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># rspec_and_mocha.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># rspec_and_mocha.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">rspec</span><span class="o">|</span>
   <span class="n">rspec</span><span class="p">.</span><span class="nf">mock_with</span> <span class="ss">:mocha</span>
 <span class="k">end</span>
@@ -349,7 +349,7 @@ and the two can integrate just fine:</p>
 
 <p>The output:</p>
 
-<pre><code class="highlight plaintext">rspec rspec_and_mocha.rb 
+<pre class="highlight plaintext"><code>rspec rspec_and_mocha.rb 
 .F.
 
 Failures:

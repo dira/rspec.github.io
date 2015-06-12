@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/"/>
     <id>http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/</id>
     <published>2015-02-02T16:00:00-08:00</published>
-    <updated>2015-02-06T23:10:24-08:00</updated>
+    <updated>2015-05-10T23:25:59-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -67,7 +67,7 @@ includes the failure that occurred while executing the example.&lt;/p&gt;
 &lt;p&gt;RSpec has a number of metadata-based features that, before now,
 would only apply to example groups, not individual examples:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="c1"&gt;# 1. Filtered module inclusion: examples in groups tagged with `:uses_time`&lt;/span&gt;
   &lt;span class="c1"&gt;#    will have access to the instance methods of `TimeHelpers`&lt;/span&gt;
   &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;include&lt;/span&gt; &lt;span class="no"&gt;TimeHelpers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:uses_time&lt;/span&gt;
@@ -124,7 +124,7 @@ internal state.&lt;/p&gt;
 it's also useful for testing 3rd party RSpec extensions. We now offer
 it as a new public API:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="c1"&gt;# You have to require this file to make this API available...&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# You have to require this file to make this API available...&lt;/span&gt;
 &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rspec/core/sandbox'&lt;/span&gt;
 
 &lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
@@ -161,8 +161,8 @@ issues like these, you may want to give them another try.&lt;/p&gt;
 &lt;p&gt;The custom matcher DSL has a &lt;code&gt;chain&lt;/code&gt; method that makes it easy to
 add fluent interfaces to your matchers:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_bigger_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-  &lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;but_smaller_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_bigger_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="ss"&gt;:but_smaller_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="vi"&gt;@max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;max&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 
@@ -181,8 +181,8 @@ Stuart &lt;a href="https://github.com/rspec/rspec-expectations/pull/644"&gt;sugg
 implemented&lt;/a&gt; an
 improvement that allows you to shorten the matcher definition to:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_bigger_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-  &lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;but_smaller_than&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:max&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_bigger_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="ss"&gt;:but_smaller_than&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:max&lt;/span&gt;
   &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;min&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;max&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
@@ -199,7 +199,7 @@ attribute that gets set to the argument passed to &lt;code&gt;but_smaller_than&l
 &lt;p&gt;RSpec 3.0 shipped with a new &lt;code&gt;output&lt;/code&gt; matcher that allows you to specify
 expected output to either &lt;code&gt;stdout&lt;/code&gt; or &lt;code&gt;stderr&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;'foo'&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'foo'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stdout&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;'foo'&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'foo'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stdout&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;warn&lt;/span&gt;  &lt;span class="s1"&gt;'foo'&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/foo/&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stderr&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -208,13 +208,13 @@ or &lt;code&gt;$stderr&lt;/code&gt; with a &lt;code&gt;StringIO&lt;/code&gt; for
 not work when you spawn subprocesses that output to one of these
 streams. For example, this fails:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'echo foo'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"foo&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stdout&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'echo foo'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"foo&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stdout&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In RSpec 3.2, you can replace &lt;code&gt;to_stdout&lt;/code&gt; with
 &lt;code&gt;to_stdout_from_any_process&lt;/code&gt; and this expectation will work.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'echo foo'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"foo&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stdout_from_any_process&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'echo foo'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"foo&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_stdout_from_any_process&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This uses an alternate mechanism, where &lt;code&gt;$stdout&lt;/code&gt; is temporarily
@@ -232,7 +232,7 @@ it's 30 times slower! For this reason, you have to opt-in to it using
 &lt;p&gt;When defining a custom matcher using the DSL, there are situations
 where it would be nice to accept a block:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_sorted_by&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;blk&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_sorted_by&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;blk&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;each_cons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;all?&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;blk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;blk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
@@ -254,7 +254,7 @@ passed to &lt;code&gt;class_exec&lt;/code&gt; is the one to be evaluated (in thi
 &lt;p&gt;In prior versions of RSpec, the block passed to &lt;code&gt;be_sorted_by&lt;/code&gt; would be
 silently ignored. In RSpec 3.2, we now issue a warning:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;WARNING: Your `be_sorted_by` custom matcher receives a block argument (`blk`), but
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;WARNING: Your `be_sorted_by` custom matcher receives a block argument (`blk`), but
 due to limitations in ruby, RSpec cannot provide the block. Instead, use the
 `block_arg` method to access the block. Called from path/to/file.rb:line_number.
 &lt;/code&gt;&lt;/pre&gt;
@@ -262,7 +262,7 @@ due to limitations in ruby, RSpec cannot provide the block. Instead, use the
 &lt;p&gt;…which tells you an alternate way to accomplish this: the new &lt;code&gt;block_arg&lt;/code&gt;
 method, available from within a custom matcher:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_sorted_by&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_sorted_by&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;each_cons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;all?&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;block_arg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;block_arg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
@@ -278,7 +278,7 @@ method, available from within a custom matcher:&lt;/p&gt;
 
 &lt;p&gt;RSpec has had an &lt;code&gt;any_args&lt;/code&gt; matcher for a long time:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_double&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:message&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;any_args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_double&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:message&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;any_args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The &lt;code&gt;any_args&lt;/code&gt; matcher behaves exactly like it reads: it allows any
@@ -287,7 +287,7 @@ arguments (including none) to match the message expectation. In RSpec
 to &lt;code&gt;with&lt;/code&gt;. In RSpec 3.2, we treat it as an arg splat, so you can now
 use it anywhere in an argument list:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_double&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:message&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;any_args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_double&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:message&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;any_args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This would match calls like &lt;code&gt;test_double.message(1, 2)&lt;/code&gt; or
@@ -300,14 +300,14 @@ that you get for failures from particular matchers. However, message
 expectation failures have never included a diff. For example, consider
 this failing message expectation:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;test_double&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;test_double&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_double&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:foo&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sx"&gt;%w[ 1 2 3 4 ]&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="n"&gt;test_double&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sx"&gt;%w[ 1 2 5 4 ]&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In RSpec 3.1 and before, this failed with:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Failure/Error: test_double.foo(%w[ 1 2 5 4 ].join("\n"))
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Failure/Error: test_double.foo(%w[ 1 2 5 4 ].join("\n"))
   Double received :foo with unexpected arguments
     expected: ("1\n2\n3\n4")
          got: ("1\n2\n5\n4")
@@ -318,7 +318,7 @@ appropriate (generally when multi-line strings are involved or when
 the pretty-print output of the objects are multi-line). In 3.2, this
 fails with:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Failure/Error: test_double.foo(%w[ 1 2 5 4 ].join("\n"))
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Failure/Error: test_double.foo(%w[ 1 2 5 4 ].join("\n"))
   Double received :foo with unexpected arguments
     expected: ("1\n2\n3\n4")
          got: ("1\n2\n5\n4")
@@ -347,7 +347,7 @@ we forgot to support an optional name for these types.  In RSpec 3.2,
 these double types now support an optional name. Just pass a second
 argument (after the interface argument, but before any stubs):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;book_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;instance_double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"The Brothers Karamozov"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;author: &lt;/span&gt;&lt;span class="s2"&gt;"Fyodor Dostoyevsky"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;book_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;instance_double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"The Brothers Karamozov"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;author: &lt;/span&gt;&lt;span class="s2"&gt;"Fyodor Dostoyevsky"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;book_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;instance_double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Lord of the Rings"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;author: &lt;/span&gt;&lt;span class="s2"&gt;"J.R.R. Tolkien"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -719,7 +719,7 @@ in Rails 4.1 and 4.2. (Aaron Kromer, #1295)&lt;/li&gt;
     <link rel="alternate" href="http://rspec.info/blog/2015/01/new-gem-signing-certificate/"/>
     <id>http://rspec.info/blog/2015/01/new-gem-signing-certificate/</id>
     <published>2015-01-29T16:00:00-08:00</published>
-    <updated>2015-02-01T13:39:44-08:00</updated>
+    <updated>2015-05-10T23:25:59-07:00</updated>
     <author>
       <name>Sam Phippen</name>
     </author>
@@ -827,7 +827,7 @@ included backtraces, but lines from RSpec itself will continue to be
 excluded. Of course, if you want still gems to be excluded, you can easily
 add this pattern back yourself:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="c1"&gt;# spec/spec_helper.rb&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# spec/spec_helper.rb&lt;/span&gt;
 &lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;backtrace_exclusion_patterns&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="sr"&gt;/gems/&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
@@ -836,7 +836,7 @@ add this pattern back yourself:&lt;/p&gt;
 &lt;p&gt;In addition, we've added a new API to make it easy to filter out one
 or more specific gems:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="c1"&gt;# spec/spec_helper.rb&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# spec/spec_helper.rb&lt;/span&gt;
 &lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;filter_gems_from_backtrace&lt;/span&gt; &lt;span class="s2"&gt;"rack"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"rake"&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
@@ -849,13 +849,13 @@ or more specific gems:&lt;/p&gt;
 for example, you can load and run all spec files except those from
 a particular directory:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;rspec&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="s2"&gt;"spec/**/*_spec.rb"&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;exclude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="s2"&gt;"spec/acceptance/**/*_spec.rb"&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;rspec&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="s2"&gt;"spec/**/*_spec.rb"&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;exclude&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="s2"&gt;"spec/acceptance/**/*_spec.rb"&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The rake task definition API supports this option now, too, so it is
 easy to define tasks that run all specs but those from one directory:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="c1"&gt;# Rakefile&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Rakefile&lt;/span&gt;
 &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rspec/core/rake_task'&lt;/span&gt;
 
 &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="s2"&gt;"Run all but the acceptance specs"&lt;/span&gt;
@@ -905,7 +905,7 @@ settings in &lt;code&gt;spec_helper.rb&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;This new matcher makes it easy to match an object based on its attributes:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;Person&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;Person&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;person&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Coen"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;person&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;have_attributes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;name: &lt;/span&gt;&lt;span class="s2"&gt;"Coen"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;age: &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -913,7 +913,7 @@ settings in &lt;code&gt;spec_helper.rb&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;It's also aliased to &lt;code&gt;an_object_having_attributes&lt;/code&gt;, which is particularly
 useful in composed matcher expressions:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="no"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Coen"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="no"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Daphne"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;people&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="no"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Coen"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="no"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Daphne"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;
   &lt;span class="n"&gt;an_object_having_attributes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;name: &lt;/span&gt;&lt;span class="s2"&gt;"Coen"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;   &lt;span class="ss"&gt;age: &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
   &lt;span class="n"&gt;an_object_having_attributes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;name: &lt;/span&gt;&lt;span class="s2"&gt;"Daphne"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;age: &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -922,7 +922,7 @@ useful in composed matcher expressions:&lt;/p&gt;
 
 &lt;p&gt;It can also be used as an argument matcher for a message expectation:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;email_gateway&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:send_receipt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;email_gateway&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:send_receipt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
   &lt;span class="n"&gt;an_object_having_attributes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;email: &lt;/span&gt;&lt;span class="s2"&gt;"foo@example.com"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -940,7 +940,7 @@ changes that needed to be made to ensure the block is only executed
 once as one would expect. We've addressed this in 3.1, which allows an
 expression like:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
   &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
@@ -951,7 +951,7 @@ expression like:&lt;/p&gt;
 
 &lt;p&gt;This new API provides a means to define a negated version of an existing matcher:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="c1"&gt;# define a negated form of `include`...&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# define a negated form of `include`...&lt;/span&gt;
 &lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define_negated_matcher&lt;/span&gt; &lt;span class="ss"&gt;:exclude&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:include&lt;/span&gt;
 
 &lt;span class="c1"&gt;# ...which allows you to write:&lt;/span&gt;
@@ -964,7 +964,7 @@ expression like:&lt;/p&gt;
 &lt;p&gt;On its own, this doesn't buy you much. However, it really comes in handy
 when dealing with composed or compound matcher expressions:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;adults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Town&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Springfield"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;adults&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;adults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Town&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Springfield"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;adults&lt;/span&gt;
 &lt;span class="n"&gt;marge&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Character&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Marge"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;bart&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Character&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Bart"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -980,8 +980,8 @@ of this feature.&lt;/p&gt;
 &lt;p&gt;The custom matcher DSL allows you to define a fluent interface using
 &lt;code&gt;chain&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_smaller_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-  &lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;and_bigger_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Matchers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:be_smaller_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;chain&lt;/span&gt; &lt;span class="ss"&gt;:and_bigger_than&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="vi"&gt;@min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;min&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 
@@ -996,19 +996,19 @@ of this feature.&lt;/p&gt;
 
 &lt;p&gt;In RSpec 2.x and 3.0, the chained part was not included in failure messages:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Failure/Error: expect(5).to be_smaller_than(10).and_bigger_than(7)
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Failure/Error: expect(5).to be_smaller_than(10).and_bigger_than(7)
   expected 5 to be smaller than 10
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;RSpec 3.1 can include the chained part in the failure message:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Failure/Error: expect(5).to be_smaller_than(10).and_bigger_than(7)
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Failure/Error: expect(5).to be_smaller_than(10).and_bigger_than(7)
   expected 5 to be smaller than 10 and bigger than 7
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;…but only if you enable this behavior with a config option:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="no"&gt;RSpec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expect_with&lt;/span&gt; &lt;span class="ss"&gt;:rspec&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;expectations&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="n"&gt;expectations&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;include_chain_clauses_in_custom_matcher_descriptions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
@@ -1027,7 +1027,7 @@ this improvement!&lt;/p&gt;
 &lt;p&gt;RSpec 2.14 added support for using test doubles as spies, which allow
 you to set an expectation that a message was received after the fact:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;spy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:foo&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;spy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:foo&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="c1"&gt;# do something with spy&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;spy&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;have_received&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:foo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -1041,7 +1041,7 @@ once before and expecting it was received after).&lt;/p&gt;
 &lt;p&gt;You can get around this by using &lt;code&gt;as_null_object&lt;/code&gt; which makes a double
 "loose" rather than strict, allowing it to receive any message:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;spy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;as_null_object&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;spy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;as_null_object&lt;/span&gt;
 &lt;span class="c1"&gt;# do something with spy&lt;/span&gt;
 &lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;spy&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;have_received&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:foo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -1049,7 +1049,7 @@ once before and expecting it was received after).&lt;/p&gt;
 &lt;p&gt;This pattern is useful enough that in RSpec 3.1, we've added new methods
 to declare spies:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;spy&lt;/span&gt;&lt;span class="p"&gt;(.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          &lt;span class="c1"&gt;# equivalent to double(...).as_null_object&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;spy&lt;/span&gt;&lt;span class="p"&gt;(.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          &lt;span class="c1"&gt;# equivalent to double(...).as_null_object&lt;/span&gt;
 &lt;span class="n"&gt;instance_spy&lt;/span&gt;&lt;span class="p"&gt;(.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# equivalent to instance_double(...).as_null_object&lt;/span&gt;
 &lt;span class="n"&gt;class_spy&lt;/span&gt;&lt;span class="p"&gt;(.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# equivalent to class_double(...).as_null_object&lt;/span&gt;
 &lt;span class="n"&gt;object_spy&lt;/span&gt;&lt;span class="p"&gt;(.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;# equivalent to object_double(...).as_null_object&lt;/span&gt;
@@ -1068,7 +1068,7 @@ particular object just for the duration of the current example. The
 original method is yielded to your block as the first argument (before
 the args of the actual method call).&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;allow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;api_client&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:fetch_users&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;and_wrap_original&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;original_method&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;allow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;api_client&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to&lt;/span&gt; &lt;span class="n"&gt;receive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:fetch_users&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;and_wrap_original&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;original_method&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;original_method&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# truncate the response to the first 10 users&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;

@@ -203,7 +203,7 @@ DSL methods (<code>describe</code>, <code>shared_examples_for</code>, etc) onto
 <code>main</code> and <code>Module</code>, instead requiring you to prefix these
 methods with <code>RSpec.</code>:</p>
 
-<pre><code class="highlight ruby"><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
   <span class="c1"># Within an example group you'll still be able to use</span>
   <span class="c1"># a bare `describe`:</span>
   <span class="n">describe</span> <span class="s2">"#some_method"</span> <span class="k">do</span>
@@ -253,7 +253,7 @@ This kind of composability is quite useful and we plan to extend
 it to all matchers in RSpec 3. For example, you could use an expression
 like:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span> <span class="p">{</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="n">expect</span> <span class="p">{</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
   <span class="n">some_object</span><span class="p">.</span><span class="nf">do_something</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
 <span class="p">}.</span><span class="nf">to</span> <span class="n">yield_with_args</span><span class="p">(</span><span class="kp">include</span><span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">),</span> <span class="n">match</span><span class="p">(</span><span class="sr">/bar/</span><span class="p">)))</span>
 </code></pre>
@@ -265,7 +265,7 @@ includes a string matching <code>/foo/</code> and a string matching <code>/bar/<
 <p>We're also considering adding matcher aliases that read better when
 composed in this fashion, so that you could write this as:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span> <span class="p">{</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="n">expect</span> <span class="p">{</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
   <span class="n">some_object</span><span class="p">.</span><span class="nf">do_something</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
 <span class="p">}.</span><span class="nf">to</span> <span class="n">yield_with_args</span><span class="p">(</span><span class="n">a_collection_including</span><span class="p">(</span><span class="n">a_string_matching</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">),</span>
                                             <span class="n">a_string_matching</span><span class="p">(</span><span class="sr">/bar/</span><span class="p">)))</span>
@@ -310,7 +310,7 @@ when users inadvertently define their own <code>example</code> method. In RSpec 
 we're removing the <code>example</code> method, opting to yield the example from
 each DSL method that runs in the context of an example:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
   <span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">example</span><span class="o">|</span> <span class="p">}</span>
   <span class="n">subject</span>       <span class="p">{</span> <span class="o">|</span><span class="n">ex</span><span class="o">|</span> <span class="p">}</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>    <span class="p">{</span> <span class="o">|</span><span class="n">ex</span><span class="o">|</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="nf">metadata</span><span class="p">[</span><span class="ss">:user_id</span><span class="p">])</span> <span class="p">}</span>
@@ -355,7 +355,7 @@ the block, there was no way to accomplish this.  In RSpec 3, we're
 correcting this oversight, and the receiver will be yielded as
 the first block argument:</p>
 
-<pre><code class="highlight ruby"><span class="n">allow_any_instance_of</span><span class="p">(</span><span class="no">User</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:age</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="n">allow_any_instance_of</span><span class="p">(</span><span class="no">User</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:age</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
   <span class="p">((</span><span class="no">Date</span><span class="p">.</span><span class="nf">today</span> <span class="o">-</span> <span class="n">user</span><span class="p">.</span><span class="nf">birthdate</span><span class="p">)</span> <span class="o">/</span> <span class="mi">365</span><span class="p">).</span><span class="nf">floor</span>
 <span class="k">end</span>
 </code></pre>

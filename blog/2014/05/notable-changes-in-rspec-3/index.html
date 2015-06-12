@@ -98,7 +98,7 @@ provided alternatives for the remaining monkey patches.</p>
 
 <p>For convenience you can disable all of the monkey patches with one option:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">disable_monkey_patching!</span>
 <span class="k">end</span>
@@ -119,13 +119,13 @@ provided alternatives for the remaining monkey patches.</p>
 
 <p>RSpec 2.x had three different hook scopes:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
   <span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="c1"># runs before each example in this group</span>
   <span class="n">before</span><span class="p">(</span><span class="ss">:all</span><span class="p">)</span>  <span class="p">{</span> <span class="p">}</span> <span class="c1"># runs once before the first example in this group</span>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span>  <span class="p">{</span> <span class="p">}</span> <span class="c1"># runs before each example in the entire test suite</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">before</span><span class="p">(</span><span class="ss">:all</span><span class="p">)</span>   <span class="p">{</span> <span class="p">}</span> <span class="c1"># runs before the first example of each top-level group</span>
@@ -137,7 +137,7 @@ provided alternatives for the remaining monkey patches.</p>
 means, and <code>:all</code> in particular can be confusing when you use it in a
 config block:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">before</span><span class="p">(</span><span class="ss">:all</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="k">end</span>
@@ -168,7 +168,7 @@ example: its description, location, metadata, execution result, etc.
 In RSpec 2.x the example was exposed via an <code>example</code> method that could
 be accessed from any hook or individual example:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
   <span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="p">{</span> <span class="nb">puts</span> <span class="n">example</span><span class="p">.</span><span class="nf">metadata</span> <span class="p">}</span>
 <span class="k">end</span>
 </code></pre>
@@ -177,7 +177,7 @@ be accessed from any hook or individual example:</p>
 instance is yielded to all example-scoped DSL methods as an explicit
 argument:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
   <span class="n">before</span><span class="p">(</span><span class="ss">:example</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">ex</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">ex</span><span class="p">.</span><span class="nf">metadata</span> <span class="p">}</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:example_description</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">ex</span><span class="o">|</span> <span class="n">ex</span><span class="p">.</span><span class="nf">description</span> <span class="p">}</span>
 
@@ -202,7 +202,7 @@ with the idea and
 <p>RSpec 2.x monkey patched <code>main</code> and <code>Module</code> to provide top level
 methods like <code>describe</code>, <code>shared_examples_for</code> and <code>shared_context</code>:</p>
 
-<pre><code class="highlight ruby"><span class="n">shared_examples_for</span> <span class="s2">"something"</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">shared_examples_for</span> <span class="s2">"something"</span> <span class="k">do</span>
 <span class="k">end</span>
 
 <span class="k">module</span> <span class="nn">MyGem</span>
@@ -215,7 +215,7 @@ methods like <code>describe</code>, <code>shared_examples_for</code> and <code>s
 <p>In RSpec 3, these methods are now also available on the <code>RSpec</code> module
 (in addition to still being available as monkey patches):</p>
 
-<pre><code class="highlight ruby"><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_examples_for</span> <span class="s2">"something"</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_examples_for</span> <span class="s2">"something"</span> <span class="k">do</span>
 <span class="k">end</span>
 
 <span class="k">module</span> <span class="nn">MyGem</span>
@@ -229,7 +229,7 @@ methods like <code>describe</code>, <code>shared_examples_for</code> and <code>s
 would make the first example above raise <code>NoMethodError</code>) by
 setting the new <code>expose_dsl_globally</code> config option to <code>false</code>:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">expose_dsl_globally</span> <span class="o">=</span> <span class="kp">false</span>
 <span class="k">end</span>
@@ -250,7 +250,7 @@ setting the new <code>expose_dsl_globally</code> config option to <code>false</c
 aliases with attached metadata. For example, this is used internally to
 define <code>fit</code> as an alias for <code>it</code> with <code>:focus =&gt; true</code> metadata:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">alias_example_to</span> <span class="ss">:fit</span><span class="p">,</span> <span class="ss">:focus</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 <span class="k">end</span>
@@ -258,7 +258,7 @@ define <code>fit</code> as an alias for <code>it</code> with <code>:focus =&gt; 
 
 <p>In RSpec 3, we've extended this feature to example groups:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">alias_example_group_to</span> <span class="ss">:describe_model</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:model</span>
 <span class="k">end</span>
@@ -309,7 +309,7 @@ describe is implemented.</p>
 <p>To support the old "never run" behaviour, the <code>skip</code> method and metadata has
 been added. None of the following examples will ever be run:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">Post</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">Post</span> <span class="k">do</span>
   <span class="n">skip</span> <span class="s1">'not implemented yet'</span> <span class="k">do</span>
   <span class="k">end</span>
 
@@ -346,7 +346,7 @@ makes sense, so that behaviour has been removed.</p>
 
 <p>RSpec has had a one-liner syntax for many years:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">Post</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">Post</span> <span class="k">do</span>
   <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">allow_mass_assignment_of</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="p">}</span>
 <span class="k">end</span>
 </code></pre>
@@ -363,7 +363,7 @@ to be available in RSpec 3 (again, regardless of your syntax configuration),
 but we've also added an alternate API that is a bit more consistent with
 the <code>expect</code> syntax:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">Post</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">Post</span> <span class="k">do</span>
   <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="p">.</span><span class="nf">to</span> <span class="n">allow_mass_assignment_of</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="p">}</span>
 <span class="k">end</span>
 </code></pre>
@@ -386,7 +386,7 @@ RSpec 3, it's no longer an all-or-nothing feature. You can control how
 individual example groups are ordered by tagging them with appropriate
 metadata:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyClass</span><span class="p">,</span> <span class="ss">:order</span> <span class="o">=&gt;</span> <span class="ss">:defined</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyClass</span><span class="p">,</span> <span class="ss">:order</span> <span class="o">=&gt;</span> <span class="ss">:defined</span> <span class="k">do</span>
   <span class="c1"># examples in this group will always run in defined order,</span>
   <span class="c1"># regardless of any other ordering configuration.</span>
 <span class="k">end</span>
@@ -425,7 +425,7 @@ Phippen</a> for helping
 is now one method: <code>register_ordering</code>. Use it to define a named ordering
 strategy:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">register_ordering</span><span class="p">(</span><span class="ss">:description_length</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">list</span><span class="o">|</span>
     <span class="n">list</span><span class="p">.</span><span class="nf">sort_by</span> <span class="p">{</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="n">item</span><span class="p">.</span><span class="nf">description</span><span class="p">.</span><span class="nf">length</span> <span class="p">}</span>
@@ -433,14 +433,14 @@ strategy:</p>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyClass</span><span class="p">,</span> <span class="ss">:order</span> <span class="o">=&gt;</span> <span class="ss">:description_length</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyClass</span><span class="p">,</span> <span class="ss">:order</span> <span class="o">=&gt;</span> <span class="ss">:description_length</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
 </code></pre>
 
 <p>Or, you can use it to define the global ordering:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">register_ordering</span><span class="p">(</span><span class="ss">:global</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">list</span><span class="o">|</span>
     <span class="c1"># sort them alphabetically</span>
@@ -508,7 +508,7 @@ from <code>BaseTextFormatter</code> is no longer effectively necessary.</li>
 
 <p>A new formatters looks like this:</p>
 
-<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">CustomFormatter</span>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">CustomFormatter</span>
   <span class="nc">RSpec</span><span class="o">::</span><span class="no">Core</span><span class="o">::</span><span class="no">Formatters</span><span class="p">.</span><span class="nf">register</span> <span class="nb">self</span><span class="p">,</span> <span class="ss">:example_started</span>
 
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
@@ -540,7 +540,7 @@ this.</p>
 else and RSpec 2.x made the most common alternate easily available via
 a config option:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">expect_with</span> <span class="ss">:stdlib</span>
   <span class="c1"># or, to use both:</span>
@@ -558,7 +558,7 @@ minitest) and a minitest gem.</p>
 <p>For RSpec 3, we've removed <code>expect_with :stdlib</code> and instead opted
 for explicit <code>:test_unit</code> and <code>:minitest</code> options:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="c1"># for test-unit:</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">expect_with</span> <span class="ss">:test_unit</span>
@@ -584,7 +584,7 @@ dice your test suite in many ways. There's a new config API that allows
 you to define derived metadata. For example, to automatically tag all
 example groups in <code>spec/acceptance/js</code> with <code>:js =&gt; true</code>:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">define_derived_metadata</span><span class="p">(</span><span class="ss">:file_path</span> <span class="o">=&gt;</span> <span class="sr">%r{/spec/acceptance/js/}</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">metadata</span><span class="o">|</span>
     <span class="n">metadata</span><span class="p">[</span><span class="ss">:js</span><span class="p">]</span> <span class="o">=</span> <span class="kp">true</span>
@@ -662,7 +662,7 @@ this.</p>
 
 <p>In RSpec 3, you can chain multiple matchers together using <code>and</code> or <code>or</code>:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># these two expectations...</span>
+<pre class="highlight ruby"><code><span class="c1"># these two expectations...</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">end_with</span><span class="p">(</span><span class="s2">"z"</span><span class="p">)</span>
 
@@ -675,7 +675,7 @@ this.</p>
 
 <p>These are aliased to the <code>&amp;</code> and <code>|</code> operators:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">end_with</span><span class="p">(</span><span class="s2">"z"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">end_with</span><span class="p">(</span><span class="s2">"z"</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">stoplight</span><span class="p">.</span><span class="nf">color</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"red"</span><span class="p">)</span> <span class="o">|</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"green"</span><span class="p">)</span> <span class="o">|</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"yellow"</span><span class="p">)</span>
 </code></pre>
 
@@ -696,7 +696,7 @@ it</a> with the <code>&amp;</code> and <code>|</code> operators.</p>
 <p>RSpec 3 allows you to expressed detailed intent by passing matchers
 as arguments to other matchers:</p>
 
-<pre><code class="highlight ruby"><span class="n">s</span> <span class="o">=</span> <span class="s2">"food"</span>
+<pre class="highlight ruby"><code><span class="n">s</span> <span class="o">=</span> <span class="s2">"food"</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="n">s</span> <span class="o">=</span> <span class="s2">"barn"</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">change</span> <span class="p">{</span> <span class="n">s</span> <span class="p">}.</span>
   <span class="nf">from</span><span class="p">(</span> <span class="n">a_string_matching</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="p">).</span>
   <span class="nf">to</span><span class="p">(</span> <span class="n">a_string_matching</span><span class="p">(</span><span class="sr">/bar/</span><span class="p">)</span> <span class="p">)</span>
@@ -725,7 +725,7 @@ passed as arguments in these sorts of expressions.</p>
 <p>Before RSpec 3, the <code>match</code> matcher existed to perform string/regex
 matching using the <code>#match</code> method:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="s2">"food"</span><span class="p">).</span><span class="nf">to</span> <span class="n">match</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="s2">"food"</span><span class="p">).</span><span class="nf">to</span> <span class="n">match</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="s2">"food"</span><span class="p">).</span><span class="nf">to</span> <span class="n">match</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span>
 </code></pre>
 
@@ -733,7 +733,7 @@ matching using the <code>#match</code> method:</p>
 array/hash data structures. The expected value can be expressed
 using matchers at any level of nesting:</p>
 
-<pre><code class="highlight ruby"><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight ruby"><code><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">:a</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="ss">:b</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"foo"</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
     <span class="ss">:c</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:d</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="mo">05</span> <span class="p">}</span>
@@ -762,7 +762,7 @@ using matchers at any level of nesting:</p>
 <p>This matcher lets you specify that something is true of all items in a
 collection. Pass a matcher as an argument:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]).</span><span class="nf">to</span> <span class="n">all</span><span class="p">(</span> <span class="n">be_odd</span> <span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]).</span><span class="nf">to</span> <span class="n">all</span><span class="p">(</span> <span class="n">be_odd</span> <span class="p">)</span>
 </code></pre>
 
 <p>Thanks to <a href="https://github.com/yelled3">Adam Farhi</a> for
@@ -779,7 +779,7 @@ collection. Pass a matcher as an argument:</p>
 <p>This matcher can be used to specify that a block writes to either stdout
 or stderr:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span> <span class="p">{</span> <span class="nb">print</span> <span class="s2">"foo"</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">output</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">).</span><span class="nf">to_stdout</span>
+<pre class="highlight ruby"><code><span class="n">expect</span> <span class="p">{</span> <span class="nb">print</span> <span class="s2">"foo"</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">output</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">).</span><span class="nf">to_stdout</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="nb">print</span> <span class="s2">"foo"</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">output</span><span class="p">(</span><span class="sr">/fo/</span><span class="p">).</span><span class="nf">to_stdout</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="nb">warn</span>  <span class="s2">"bar"</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">output</span><span class="p">(</span><span class="sr">/bar/</span><span class="p">).</span><span class="nf">to_stderr</span>
 </code></pre>
@@ -811,7 +811,7 @@ between 1 and 10</code>.</li>
   <li>It provides both <code>inclusive</code> and <code>exclusive</code> modes.</li>
 </ul>
 
-<pre><code class="highlight ruby"><span class="c1"># like `Comparable#between?`, it is inclusive by default</span>
+<pre class="highlight ruby"><code><span class="c1"># like `Comparable#between?`, it is inclusive by default</span>
 <span class="n">expect</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">to</span> <span class="n">be_between</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># ...but you can make it exclusive:</span>
@@ -860,7 +860,7 @@ this.</p>
 two arrays while disregarding any ordering differences. Originally,
 this was available using the <code>=~</code> operator with the old <code>should</code> syntax:</p>
 
-<pre><code class="highlight ruby"><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">should</span> <span class="o">=~</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<pre class="highlight ruby"><code><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nf">should</span> <span class="o">=~</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 </code></pre>
 
 <p>Later, when we <a href="/blog/2012/06/rspecs-new-expectation-syntax">added the <code>expect</code>
@@ -868,7 +868,7 @@ syntax</a>,
 we decided not to bring the operator matchers forward to the new syntax,
 and called the matcher <code>match_array</code>:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]).</span><span class="nf">to</span> <span class="n">match_array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]).</span><span class="nf">to</span> <span class="n">match_array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </code></pre>
 
 <p><code>match_array</code> was the best name we could think of at the time
@@ -877,7 +877,7 @@ term and the matcher is meant to work on other kinds of collections
 besides arrays. We came up with a much better name for it
 in RSpec 3:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]).</span><span class="nf">to</span> <span class="n">contain_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]).</span><span class="nf">to</span> <span class="n">contain_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre>
 
 <p>Note that <code>match_array</code> is <em>not</em> deprecated. The two methods behave identically,
@@ -904,7 +904,7 @@ been <a href="https://github.com/rspec/rspec-expectations/pull/293">extracted</a
 <p>The general alternative is to set an expectation on the size of
 a collection:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="n">list</span><span class="p">).</span><span class="nf">to</span> <span class="n">have</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nf">items</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">list</span><span class="p">).</span><span class="nf">to</span> <span class="n">have</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nf">items</span>
 <span class="c1"># ...can be written as:</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="nf">size</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
@@ -962,7 +962,7 @@ wrongly use a value matcher in a block expectation expression. For
 example, before this change, passing a block to <code>expect</code> when using a
 matcher like <code>be_nil</code> could lead to false positives:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span> <span class="p">{</span> <span class="n">foo</span><span class="p">.</span><span class="nf">bar</span> <span class="p">}.</span><span class="nf">not_to</span> <span class="n">be_nil</span>
+<pre class="highlight ruby"><code><span class="n">expect</span> <span class="p">{</span> <span class="n">foo</span><span class="p">.</span><span class="nf">bar</span> <span class="p">}.</span><span class="nf">not_to</span> <span class="n">be_nil</span>
 
 <span class="c1"># ...is equivalent to:</span>
 <span class="n">block</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="n">foo</span><span class="p">.</span><span class="nf">bar</span> <span class="p">}</span>
@@ -1008,7 +1008,7 @@ new syntax, as released in 2.14, lacked. We've addressed that
 in RSpec 3 via a couple new APIs: <code>receive_messages</code> and
 <code>receive_message_chain</code>.</p>
 
-<pre><code class="highlight ruby"><span class="c1"># old syntax:</span>
+<pre class="highlight ruby"><code><span class="c1"># old syntax:</span>
 <span class="n">object</span><span class="p">.</span><span class="nf">stub</span><span class="p">(</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:bar</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">)</span>
 <span class="c1"># new syntax:</span>
 <span class="n">allow</span><span class="p">(</span><span class="n">object</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive_messages</span><span class="p">(</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:bar</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">)</span>
@@ -1050,7 +1050,7 @@ verifying doubles — see below).</p>
 aliases of <code>double</code>, it's easy to define these aliases on your
 own if you'd like to keep using them:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="k">module</span> <span class="nn">DoubleAliases</span>
   <span class="k">def</span> <span class="nf">mock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
     <span class="n">double</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
@@ -1104,7 +1104,7 @@ doubles</a>.
 (A partial double is when you mock or stub an existing object:
 <code>expect(MyClass).to receive(:some_message)</code>.)</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">mock_with</span> <span class="ss">:rspec</span> <span class="k">do</span> <span class="o">|</span><span class="n">mocks</span><span class="o">|</span>
     <span class="n">mocks</span><span class="p">.</span><span class="nf">verify_partial_doubles</span> <span class="o">=</span> <span class="kp">true</span>
@@ -1136,7 +1136,7 @@ a later example), you will get explicit errors.</li>
 <p>We've also provided a new API that lets you create temporary scopes in
 arbitrary places (such as a <code>before(:context)</code> hook):</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MyWebCrawler</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MyWebCrawler</span> <span class="k">do</span>
   <span class="n">before</span><span class="p">(</span><span class="ss">:context</span><span class="p">)</span> <span class="k">do</span>
     <span class="no">RSpec</span><span class="o">::</span><span class="no">Mocks</span><span class="p">.</span><span class="nf">with_temporary_scope</span> <span class="k">do</span>
       <span class="n">allow</span><span class="p">(</span><span class="no">MyWebCrawler</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:crawl_depth_limit</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -1169,7 +1169,7 @@ Unfortunately, there wasn't a simple way to do this when using
 as the first argument to an <code>any_instance</code> implementation block,
 making this easy:</p>
 
-<pre><code class="highlight ruby"><span class="n">allow_any_instance_of</span><span class="p">(</span><span class="no">Employee</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:salary</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">employee</span><span class="p">,</span> <span class="n">currency</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="n">allow_any_instance_of</span><span class="p">(</span><span class="no">Employee</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:salary</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">employee</span><span class="p">,</span> <span class="n">currency</span><span class="o">|</span>
   <span class="n">usd_amount</span> <span class="o">=</span> <span class="mi">50_000</span> <span class="o">+</span> <span class="p">(</span><span class="mi">10_000</span> <span class="o">*</span> <span class="n">employee</span><span class="p">.</span><span class="nf">years_worked</span><span class="p">)</span>
   <span class="n">currency</span><span class="p">.</span><span class="nf">from_usd</span><span class="p">(</span><span class="n">usd_amount</span><span class="p">)</span>
 <span class="k">end</span>
@@ -1197,7 +1197,7 @@ users.</p>
 
 <p>In RSpec 3, this behavior must be explicitly enabled:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">infer_spec_type_from_file_location!</span>
 <span class="k">end</span>
@@ -1209,7 +1209,7 @@ configuration still enables this.</p>
 <p>To explicitly tag specs without using automatic inference, set the <code>type</code>
 metadata:</p>
 
-<pre><code class="highlight ruby"><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">ThingsController</span><span class="p">,</span> <span class="ss">type: :controller</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">ThingsController</span><span class="p">,</span> <span class="ss">type: :controller</span> <span class="k">do</span>
   <span class="c1"># Equivalent to being in spec/controllers</span>
 <span class="k">end</span>
 </code></pre>

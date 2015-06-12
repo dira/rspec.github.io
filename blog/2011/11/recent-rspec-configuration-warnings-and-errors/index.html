@@ -37,7 +37,7 @@ but love the runner.</p>
 
 <p>RSpec 2 allows you to configure which you want to use:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">expect_with</span> <span class="ss">:stdlib</span>
 <span class="k">end</span>
@@ -80,7 +80,7 @@ trying to figure out why <code>super</code> would infinitely recurse on itself.<
 
 <p>I eventually managed to boil the problem down to a simple rspec-less example:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># example.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># example.rb</span>
 <span class="k">module</span> <span class="nn">MyModule</span>
   <span class="k">def</span> <span class="nf">some_method</span><span class="p">;</span> <span class="k">super</span><span class="p">;</span> <span class="k">end</span>
 <span class="k">end</span>
@@ -253,7 +253,7 @@ need to create a secondary helper file for your isolated, fast specs.</p>
 
 <p>Here's one way to do it:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/fast_spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/fast_spec_helper.rb</span>
 <span class="nb">require</span> <span class="s1">'rspec'</span>
 
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
@@ -261,7 +261,7 @@ need to create a secondary helper file for your isolated, fast specs.</p>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/spec_helper.rb</span>
 <span class="nb">require</span> <span class="s1">'fast_spec_helper'</span>
 
 <span class="c1"># load rails or whatever to get your full app environment booted</span>
@@ -271,14 +271,14 @@ need to create a secondary helper file for your isolated, fast specs.</p>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/lib/my_class_spec.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/lib/my_class_spec.rb</span>
 <span class="nb">require</span> <span class="s1">'fast_spec_helper'</span>
 
 <span class="n">describe</span> <span class="no">MyClass</span> <span class="k">do</span>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="c1"># spec/controllers/my_controller_spec.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec/controllers/my_controller_spec.rb</span>
 <span class="nb">require</span> <span class="s1">'spec_helper'</span>
 
 <span class="n">describe</span> <span class="no">MyController</span> <span class="k">do</span>

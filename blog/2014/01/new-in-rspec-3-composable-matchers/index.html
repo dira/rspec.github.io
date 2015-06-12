@@ -10,7 +10,7 @@ expectations, and opens up new possibilities.</p>
 
 <p>In RSpec 2.x, I've written code like this on many occassions:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># background_worker.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># background_worker.rb</span>
 <span class="k">class</span> <span class="nc">BackgroundWorker</span>
   <span class="kp">attr_reader</span> <span class="ss">:queue</span>
 
@@ -24,7 +24,7 @@ expectations, and opens up new possibilities.</p>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="c1"># background_worker_spec.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># background_worker_spec.rb</span>
 <span class="n">describe</span> <span class="no">BackgroundWorker</span> <span class="k">do</span>
   <span class="n">it</span> <span class="s1">'puts enqueued jobs onto the queue in order'</span> <span class="k">do</span>
     <span class="n">worker</span> <span class="o">=</span> <span class="no">BackgroundWorker</span><span class="p">.</span><span class="nf">new</span>
@@ -42,7 +42,7 @@ expectations, and opens up new possibilities.</p>
 (or nested within data structures passed as arguments) to other matchers
 allowing you to simplify specs like these:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># background_worker_spec.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># background_worker_spec.rb</span>
 <span class="n">describe</span> <span class="no">BackgroundWorker</span> <span class="k">do</span>
   <span class="n">it</span> <span class="s1">'puts enqueued jobs onto the queue in order'</span> <span class="k">do</span>
     <span class="n">worker</span> <span class="o">=</span> <span class="no">BackgroundWorker</span><span class="p">.</span><span class="nf">new</span>
@@ -63,7 +63,7 @@ the <code>inspect</code> output.  For example, if we "break" the implementation
 tested by this spec by commenting out the <code>queue &lt;&lt; ...</code> line, it fails
 with:</p>
 
-<pre><code class="highlight plaintext">1) BackgroundWorker puts enqueued jobs onto the queue in order
+<pre class="highlight plaintext"><code>1) BackgroundWorker puts enqueued jobs onto the queue in order
    Failure/Error: expect(worker.queue).to match [
      expected [] to match [(a hash including {:klass =&gt; "Class1", :id =&gt; 37}), (a hash including {:klass =&gt; "Class2", :id =&gt; 42})]
      Diff:
@@ -84,18 +84,18 @@ better failure message.</p>
 
 <p>For example, compare this expectation and failure message:</p>
 
-<pre><code class="highlight plaintext">x = "a"
+<pre class="highlight plaintext"><code>x = "a"
 expect { }.to change { x }.from start_with("a")
 </code></pre>
-<pre><code class="highlight plaintext">expected result to have changed from start with "a", but did not change
+<pre class="highlight plaintext"><code>expected result to have changed from start with "a", but did not change
 </code></pre>
 
 <p>…to:</p>
 
-<pre><code class="highlight ruby"><span class="n">x</span> <span class="o">=</span> <span class="s2">"a"</span>
+<pre class="highlight ruby"><code><span class="n">x</span> <span class="o">=</span> <span class="s2">"a"</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">change</span> <span class="p">{</span> <span class="n">x</span> <span class="p">}.</span><span class="nf">from</span> <span class="n">a_string_starting_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight plaintext">expected result to have changed from a string starting with "a",
+<pre class="highlight plaintext"><code>expected result to have changed from a string starting with "a",
 but did not change
 </code></pre>
 
@@ -112,7 +112,7 @@ they are easy to guess. You'll see many examples below, and the RSpec
 the bit of code in rspec-expectations that provides the
 <code>a_string_starting_with</code> alias of <code>start_with</code>:</p>
 
-<pre><code class="highlight ruby"><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">alias_matcher</span> <span class="ss">:a_string_starting_with</span><span class="p">,</span> <span class="ss">:start_with</span>
+<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">alias_matcher</span> <span class="ss">:a_string_starting_with</span><span class="p">,</span> <span class="ss">:start_with</span>
 </code></pre>
 
 <h2 id="compound-matcher-expressions">Compound Matcher Expressions</h2>
@@ -121,20 +121,20 @@ the bit of code in rspec-expectations that provides the
 that provides another way of combining matchers: compound <code>and</code> and <code>or</code>
 matcher expressions. For example, rather than writing this:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">end_with</span><span class="p">(</span><span class="s2">"z"</span><span class="p">)</span>
 </code></pre>
 
 <p>…you can combine these into one expectation:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">).</span><span class="nf">and</span> <span class="n">end_with</span><span class="p">(</span><span class="s2">"z"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">alphabet</span><span class="p">).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"a"</span><span class="p">).</span><span class="nf">and</span> <span class="n">end_with</span><span class="p">(</span><span class="s2">"z"</span><span class="p">)</span>
 </code></pre>
 
 <p>You can do the same with <code>or</code>. While less common, this is useful
 for expressing one of a valid list of values (e.g. when the exact
 value is indeterminite):</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">(</span><span class="n">stoplight</span><span class="p">.</span><span class="nf">color</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"red"</span><span class="p">).</span><span class="nf">or</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"green"</span><span class="p">).</span><span class="nf">or</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"yellow"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">stoplight</span><span class="p">.</span><span class="nf">color</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"red"</span><span class="p">).</span><span class="nf">or</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"green"</span><span class="p">).</span><span class="nf">or</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"yellow"</span><span class="p">)</span>
 </code></pre>
 
 <p>I think this could particularly come in handy for expressing invariants
@@ -143,7 +143,7 @@ using Jim Weirich's <a href="https://github.com/jimweirich/rspec-given#invariant
 <p>Compound matcher expressions can also be passed as an argument to
 another matcher:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="s2">"food"</span><span class="p">,</span> <span class="s2">"drink"</span><span class="p">]).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="s2">"food"</span><span class="p">,</span> <span class="s2">"drink"</span><span class="p">]).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span>
   <span class="n">a_string_starting_with</span><span class="p">(</span><span class="s2">"f"</span><span class="p">).</span><span class="nf">and</span> <span class="n">ending_with</span><span class="p">(</span><span class="s2">"d"</span><span class="p">)</span>
 <span class="p">)</span>
 </code></pre>
@@ -168,13 +168,13 @@ receiving matchers as arguments.</p>
 
 <p>The <code>by</code> method of the <code>change</code> matcher can receive a matcher:</p>
 
-<pre><code class="highlight ruby"><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+<pre class="highlight ruby"><code><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">.</span><span class="mo">05</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">change</span> <span class="p">{</span> <span class="n">k</span> <span class="p">}.</span><span class="nf">by</span><span class="p">(</span> <span class="n">a_value_within</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">).</span><span class="nf">of</span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
 </code></pre>
 
 <p>You can also pass matchers to <code>from</code> or <code>to</code>:</p>
 
-<pre><code class="highlight ruby"><span class="n">s</span> <span class="o">=</span> <span class="s2">"food"</span>
+<pre class="highlight ruby"><code><span class="n">s</span> <span class="o">=</span> <span class="s2">"food"</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="n">s</span> <span class="o">=</span> <span class="s2">"barn"</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">change</span> <span class="p">{</span> <span class="n">s</span> <span class="p">}.</span>
   <span class="nf">from</span><span class="p">(</span> <span class="n">a_string_matching</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="p">).</span>
   <span class="nf">to</span><span class="p">(</span> <span class="n">a_string_matching</span><span class="p">(</span><span class="sr">/bar/</span><span class="p">)</span> <span class="p">)</span>
@@ -188,7 +188,7 @@ more clear than <code>match_array</code> (now that <code>match</code> can match 
 also allows you to pass the array elements as individual arguments rather
 than being forced to pass a single array argument like <code>match_array</code> expects.</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="s2">"barn"</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="mi">45</span><span class="p">]).</span><span class="nf">to</span> <span class="n">contain_exactly</span><span class="p">(</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="s2">"barn"</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="mi">45</span><span class="p">]).</span><span class="nf">to</span> <span class="n">contain_exactly</span><span class="p">(</span>
   <span class="n">a_value_within</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">).</span><span class="nf">of</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span>
   <span class="n">a_string_starting_with</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">)</span>
 <span class="p">)</span>
@@ -206,7 +206,7 @@ than being forced to pass a single array argument like <code>match_array</code> 
 <p><code>include</code> allows you to match against the elements of a collection,
 the keys of a hash, or against a subset of the key/value pairs in a hash:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="s2">"barn"</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="mi">45</span><span class="p">]).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span> <span class="n">a_string_starting_with</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">)</span> <span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="s2">"barn"</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="mi">45</span><span class="p">]).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span> <span class="n">a_string_starting_with</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">)</span> <span class="p">)</span>
 
 <span class="n">expect</span><span class="p">(</span><span class="mi">12</span> <span class="o">=&gt;</span> <span class="s2">"twelve"</span><span class="p">,</span> <span class="mi">3</span> <span class="o">=&gt;</span> <span class="s2">"three"</span><span class="p">).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span> <span class="n">a_value_between</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span> <span class="p">)</span>
 
@@ -221,7 +221,7 @@ the keys of a hash, or against a subset of the key/value pairs in a hash:</p>
 now works against arbitrary array/hash data structures, nested as deeply
 as you like. Matchers can be used at any level of that nesting:</p>
 
-<pre><code class="highlight ruby"><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight ruby"><code><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">:a</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="ss">:b</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"foo"</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
     <span class="ss">:c</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:d</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="mo">05</span> <span class="p">}</span>
@@ -244,7 +244,7 @@ as you like. Matchers can be used at any level of that nesting:</p>
 <p><code>raise_error</code> can accept a matcher for matching against the exception
 class or a matcher to match against the message, or both.</p>
 
-<pre><code class="highlight ruby"><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">define</span> <span class="ss">:an_exception_caused_by</span> <span class="k">do</span> <span class="o">|</span><span class="n">cause</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">define</span> <span class="ss">:an_exception_caused_by</span> <span class="k">do</span> <span class="o">|</span><span class="n">cause</span><span class="o">|</span>
   <span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">exception</span><span class="o">|</span>
     <span class="n">cause</span> <span class="o">===</span> <span class="n">exception</span><span class="p">.</span><span class="nf">cause</span>
   <span class="k">end</span>
@@ -267,7 +267,7 @@ class or a matcher to match against the message, or both.</p>
 
 <p>These are pretty self-explanatory:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span><span class="p">([</span><span class="s2">"barn"</span><span class="p">,</span> <span class="s2">"food"</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="mi">45</span><span class="p">]).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span>
+<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">([</span><span class="s2">"barn"</span><span class="p">,</span> <span class="s2">"food"</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="mi">45</span><span class="p">]).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span>
   <span class="n">a_string_matching</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">),</span>
   <span class="n">a_string_matching</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">)</span>
 <span class="p">)</span>
@@ -282,7 +282,7 @@ class or a matcher to match against the message, or both.</p>
 
 <p>You can pass a matcher to <code>throw_symbol</code> to match against the accompanying argument:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span> <span class="p">{</span>
+<pre class="highlight ruby"><code><span class="n">expect</span> <span class="p">{</span>
   <span class="kp">throw</span> <span class="ss">:pi</span><span class="p">,</span> <span class="no">Math</span><span class="o">::</span><span class="no">PI</span>
 <span class="p">}.</span><span class="nf">to</span> <span class="n">throw_symbol</span><span class="p">(</span><span class="ss">:pi</span><span class="p">,</span> <span class="n">a_value_within</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mo">01</span><span class="p">).</span><span class="nf">of</span><span class="p">(</span><span class="mi">3</span><span class="o">.</span><span class="mi">14</span><span class="p">))</span>
 </code></pre>
@@ -291,7 +291,7 @@ class or a matcher to match against the message, or both.</p>
 
 <p>Matchers can be used to specify the yielded arguments for these matchers:</p>
 
-<pre><code class="highlight ruby"><span class="n">expect</span> <span class="p">{</span> <span class="o">|</span><span class="n">probe</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="n">expect</span> <span class="p">{</span> <span class="o">|</span><span class="n">probe</span><span class="o">|</span>
   <span class="s2">"food"</span><span class="p">.</span><span class="nf">tap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">probe</span><span class="p">)</span>
 <span class="p">}.</span><span class="nf">to</span> <span class="n">yield_with_args</span><span class="p">(</span> <span class="n">a_string_starting_with</span><span class="p">(</span><span class="s2">"f"</span><span class="p">)</span> <span class="p">)</span>
 

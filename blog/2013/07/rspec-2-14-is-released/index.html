@@ -19,7 +19,7 @@ so that it prints the groups with the largest mean example time.
 For example, here's the output from using <code>--profile 5</code> on rspec-core's
 suite:</p>
 
-<pre><code class="highlight plaintext">Top 5 slowest examples (0.38945 seconds, 10.8% of total time):
+<pre class="highlight plaintext"><code>Top 5 slowest examples (0.38945 seconds, 10.8% of total time):
   RSpec::Core::Formatters::TextMateFormatter produces HTML identical to the one we designed manually
     0.10471 seconds ./spec/rspec/core/formatters/text_mate_formatter_spec.rb:64
   ::DRbCommandLine --drb-port without RSPEC_DRB environment variable set sets the DRb port
@@ -56,7 +56,7 @@ be defined in any context, and could be used from any context. In 2.14,
 this has changed: shared example groups are now scoped to the context
 they are defined in. That means you can now do this:</p>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MySinatraApp1</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MySinatraApp1</span> <span class="k">do</span>
   <span class="n">shared_examples_for</span> <span class="s2">"error handling"</span> <span class="k">do</span>
     <span class="c1"># some examples would go here</span>
   <span class="k">end</span>
@@ -71,7 +71,7 @@ they are defined in. That means you can now do this:</p>
 <span class="k">end</span>
 </code></pre>
 
-<pre><code class="highlight ruby"><span class="n">describe</span> <span class="no">MySinatraApp2</span> <span class="k">do</span>
+<pre class="highlight ruby"><code><span class="n">describe</span> <span class="no">MySinatraApp2</span> <span class="k">do</span>
   <span class="n">shared_examples_for</span> <span class="s2">"error handling"</span> <span class="k">do</span>
     <span class="c1"># some different examples would go here</span>
   <span class="k">end</span>
@@ -103,7 +103,7 @@ removal in 3.0. To help reduce the noisiness of the increased
 number of deprecations, there's a new option that can direct
 deprecation warnings to a file:</p>
 
-<pre><code class="highlight ruby"><span class="c1"># spec_helper.rb</span>
+<pre class="highlight ruby"><code><span class="c1"># spec_helper.rb</span>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">rspec</span><span class="o">|</span>
   <span class="n">rspec</span><span class="p">.</span><span class="nf">deprecation_stream</span> <span class="o">=</span> <span class="s1">'log/deprecations.log'</span>
   <span class="c1"># or</span>
@@ -116,7 +116,7 @@ you configure this, it'll send deprecation warnings to the
 configured file instead, and at the end of the spec run
 it will print out a message like:</p>
 
-<pre><code class="highlight plaintext">2 deprecations logged to log/deprecations.log
+<pre class="highlight plaintext"><code>2 deprecations logged to log/deprecations.log
 </code></pre>
 
 <h3 id="mocks-new-message-expectation-syntax">Mocks: New message expectation syntax</h3>
@@ -127,7 +127,7 @@ that removes a reliance on monkey-patching, avoiding certain
 kinds of problems related to proxy objects. In RSpec 2.14,
 we've extended that same syntax to rspec-mocks:</p>
 
-<pre><code class="highlight ruby"><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">)</span>
 
 <span class="c1"># old syntax:</span>
 <span class="n">mailer</span><span class="p">.</span><span class="nf">stub</span><span class="p">(</span><span class="ss">:deliver_welcome_email</span><span class="p">)</span>
@@ -148,7 +148,7 @@ from the 2.14.0.rc1 release.</p>
 rspec-mocks has required that you set a message expectation before
 the message is received:</p>
 
-<pre><code class="highlight ruby"><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">mailer</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:deliver_welcome_email</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="n">an_instance_of</span><span class="p">(</span><span class="no">User</span><span class="p">))</span>
 <span class="no">UserCreationService</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">mailer</span><span class="p">).</span><span class="nf">create_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </code></pre>
@@ -157,7 +157,7 @@ the message is received:</p>
 try to organize your tests using an arrange/act/assert pattern). Spies
 allow you to assert that a message was received after the fact:</p>
 
-<pre><code class="highlight ruby"><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">,</span> <span class="ss">deliver_welcome_email: </span><span class="kp">nil</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">,</span> <span class="ss">deliver_welcome_email: </span><span class="kp">nil</span><span class="p">)</span>
 <span class="no">UserCreationService</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">mailer</span><span class="p">).</span><span class="nf">create_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">mailer</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_received</span><span class="p">(</span><span class="ss">:deliver_welcome_email</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="n">an_instance_of</span><span class="p">(</span><span class="no">User</span><span class="p">))</span>
 </code></pre>
@@ -169,7 +169,7 @@ Alternately, you can create your test double as a null object,
 (using <code>double().as_null_object</code>) which has the effect of
 auto-spying on all messages sent to that object:</p>
 
-<pre><code class="highlight ruby"><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">).</span><span class="nf">as_null_object</span>
+<pre class="highlight ruby"><code><span class="n">mailer</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Mailer"</span><span class="p">).</span><span class="nf">as_null_object</span>
 <span class="no">UserCreationService</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">mailer</span><span class="p">).</span><span class="nf">create_user</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">mailer</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_received</span><span class="p">(</span><span class="ss">:deliver_welcome_email</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="n">an_instance_of</span><span class="p">(</span><span class="no">User</span><span class="p">))</span>
 </code></pre>
