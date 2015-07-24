@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://rspec.info/blog/2015/06/rspec-3-3-has-been-released/"/>
     <id>http://rspec.info/blog/2015/06/rspec-3-3-has-been-released/</id>
     <published>2015-06-11T17:00:00-07:00</published>
-    <updated>2015-06-12T17:20:08-07:00</updated>
+    <updated>2015-07-23T23:34:50-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -732,7 +732,7 @@ objects of the same type will be given. This allows rspec-mocks'
     <link rel="alternate" href="http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/"/>
     <id>http://rspec.info/blog/2015/02/rspec-3-2-has-been-released/</id>
     <published>2015-02-02T16:00:00-08:00</published>
-    <updated>2015-06-12T17:20:00-07:00</updated>
+    <updated>2015-07-23T23:34:50-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -1437,7 +1437,7 @@ in Rails 4.1 and 4.2. (Aaron Kromer, #1295)&lt;/li&gt;
     <link rel="alternate" href="http://rspec.info/blog/2015/01/new-gem-signing-certificate/"/>
     <id>http://rspec.info/blog/2015/01/new-gem-signing-certificate/</id>
     <published>2015-01-29T16:00:00-08:00</published>
-    <updated>2015-06-12T17:20:00-07:00</updated>
+    <updated>2015-07-23T23:34:50-07:00</updated>
     <author>
       <name>Sam Phippen</name>
     </author>
@@ -1477,7 +1477,7 @@ If you are using the old RSpec certificate you'll need to move to the new one.&l
     <link rel="alternate" href="http://rspec.info/blog/2015/01/new-rspec-website/"/>
     <id>http://rspec.info/blog/2015/01/new-rspec-website/</id>
     <published>2015-01-28T16:00:00-08:00</published>
-    <updated>2015-06-12T17:20:00-07:00</updated>
+    <updated>2015-07-23T23:34:50-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -1516,7 +1516,7 @@ to suggest improvements or submit a pull request.&lt;/p&gt;
     <link rel="alternate" href="http://rspec.info/blog/2014/09/rspec-3-1-has-been-released/"/>
     <id>http://rspec.info/blog/2014/09/rspec-3-1-has-been-released/</id>
     <published>2014-09-03T17:00:00-07:00</published>
-    <updated>2015-06-12T17:20:00-07:00</updated>
+    <updated>2015-07-23T23:34:50-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -2033,7 +2033,7 @@ settings in the generated &lt;code&gt;rails_helper&lt;/code&gt;. (Aaron Kromer, 
     <link rel="alternate" href="http://rspec.info/blog/2014/06/rspec-team-changes/"/>
     <id>http://rspec.info/blog/2014/06/rspec-team-changes/</id>
     <published>2014-06-12T17:00:00-07:00</published>
-    <updated>2015-06-12T17:20:00-07:00</updated>
+    <updated>2015-07-23T23:34:50-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
