@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://rspec.info/blog/2017/09/effective-testing-with-rspec-3-released/"/>
     <id>http://rspec.info/blog/2017/09/effective-testing-with-rspec-3-released/</id>
     <published>2017-09-10T17:00:00-07:00</published>
-    <updated>2017-09-10T20:33:06-07:00</updated>
+    <updated>2017-09-11T09:35:53-07:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -22,8 +22,8 @@
 Ian Dees and I have written a new book for the Pragmatic Bookshelf
 about RSpec, entitled &lt;em&gt;Effective Testing with RSpec 3: Build Ruby Apps with Confidence&lt;/em&gt;.
 We're happy to announce that the book is out of beta and is now shipping from
-&lt;a href="https://pragprog.com/book/rspec3/effective-testing-with-rspec-3"&gt;pragprog.com&lt;/a&gt; and
-&lt;a href="https://www.amazon.com/Effective-Testing-RSpec-Build-Confidence/dp/1680501984/"&gt;amazon.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="https://pragprog.com/book/rspec3/effective-testing-with-rspec-3"&gt;PragProg&lt;/a&gt; and
+&lt;a href="https://www.amazon.com/Effective-Testing-RSpec-Build-Confidence/dp/1680501984/"&gt;Amazon&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="The book has shipped!" title="Our book has shipped!" src="/images/blog/physical-book.jpg" /&gt;&lt;/p&gt;
 
